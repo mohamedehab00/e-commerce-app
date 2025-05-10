@@ -15,8 +15,6 @@ import { LookupsService } from 'src/app/services/lookups.service';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
-  host = 'http://localhost:8080';
-
   checkoutForm: FormGroup;
 
   totalCost: number = 0;

@@ -1,18 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LookupsService {
-  host = 'http://localhost:8080';
+  private baseUrl = environment.apiUrl + '/lookup';
 
   constructor(private http:HttpClient) { }
 
   getPaymentMethods() {
-    return this.http.get<any[]>(`${this.host}/api/lookup/payment-methods`);
+    return this.http.get<any[]>(`${this.baseUrl}/payment-methods`);
   }
   getCountries() {
-    return this.http.get<any[]>(`${this.host}/api/lookup/countries`);
+    return this.http.get<any[]>(`${this.baseUrl}/countries`);
   }
 }
