@@ -1,0 +1,48 @@
+<div class="main-content">
+    <div class="section-content section-content-p30">
+        <h1 *ngIf="currentCategory.name" class="section-title">Category: {{currentCategory.name}}</h1>
+        <hr *ngIf="currentCategory.name">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-3" *ngFor="let product of products">
+                    <div class="product-box">
+                        <a [routerLink]="['/products/product',product.id]">
+                            <img [src]="product.imageUrl" class="img-responsive">
+                        </a>
+                        <a [routerLink]="['/products/product',product.id]">
+                            <h1>{{product.name}}</h1>
+                        </a>
+                        <h2>{{product.description}}</h2>
+                        <div class="price"> $ {{product.price}}</div>
+                        <a (click)="addToCart(product)" class="primary-btn">Add to cart</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div *ngIf="products.length <= 0" class="alert alert-warning text-center col-md-12">
+                <h1>No products available</h1>
+            </div>
+
+            <div class="footer-pagination">
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3">
+                        <div class="items">
+                            <label>Item per page</label> 
+                            <select (change)="onItemsPerPageChange($event)">
+                                <option>10</option>
+                                <option>20</option>
+                                <option>30</option>
+                                <option>40</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <ngb-pagination (pageChange)="onPageChange($event)" [collectionSize]="50" [(page)]="currentPage" [pageSize]="pageSize" aria-label="Default pagination"></ngb-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
